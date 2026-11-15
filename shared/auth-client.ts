@@ -35,7 +35,23 @@ interface Opts {
   url?: string;
   key?: string;
   now?: () => number;
+  /**
+   * Runs `fn` while holding a lock shared by every page and worker of the same origin, so two tabs (or the
+   * extension popup and its background worker) never spend the same single-use refresh token at once.
+   * Defaults to the Web Locks API when present.
+   */
+  lock?: <T>(fn: () => Promise<T>) => Promise<T>;
 }
+
+const LOCK_NAME = "openkeyword-auth-refresh";
+
+function defaultLock<T>(fn: () => Promise<T>): Promise<T> {
+  const locks = (globalThis as { navigator?: { locks?: { request: (n: string, f: () => Promise<T>) => Promise<T> } } }).navigator?.locks;
+  return locks ? locks.request(LOCK_NAME, fn) : fn();
+}
+
+/** Refresh answers that mean the session is really over. Anything else keeps it and tries again later. */
+const SESSION_GONE = /refresh_token_not_found|refresh_token_already_used|session_not_found|session_expired|user_not_found|user_banned/;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const CODE_RE = /^\d{6,10}$/;
@@ -45,6 +61,7 @@ export function createAuthClient(opts: Opts) {
   const base = (opts.url ?? SUPABASE_URL).replace(/\/+$/, "") + "/auth/v1";
   const key = opts.key ?? SUPABASE_PUBLISHABLE_KEY;
   const nowSec = () => Math.floor((opts.now ?? Date.now)() / 1000);
+  const lock = opts.lock ?? defaultLock;
   let refreshing: Promise<AuthSession | null> | null = null;
 
   async function post(path: string, body: unknown, bearer?: string): Promise<Response> {
@@ -105,27 +122,40 @@ export function createAuthClient(opts: Opts) {
       if (!s) return null;
       if (s.expiresAt - nowSec() > 60) return s;
       if (!refreshing) {
-        refreshing = (async () => {
+        refreshing = lock(async () => {
+          // Another tab or context may have refreshed while we waited for the lock.
+          const cur = await opts.store.get();
+          if (!cur) return null;
+          if (cur.refreshToken !== s.refreshToken || cur.expiresAt - nowSec() > 60) return cur;
           try {
-            const res = await post("/token?grant_type=refresh_token", { refresh_token: s.refreshToken });
-            if (res.status === 400 || res.status === 401 || res.status === 403) {
-              await opts.store.set(null); // refresh token revoked or already used: signed out
-              return null;
+            const res = await post("/token?grant_type=refresh_token", { refresh_token: cur.refreshToken });
+            if (res.ok) {
+              const next = toSession((await res.json()) as Record<string, unknown>);
+              await opts.store.set(next);
+              return next;
             }
-            if (!res.ok) return s; // temporary problem: keep the session, try again next time
-            const next = toSession((await res.json()) as Record<string, unknown>);
-            await opts.store.set(next);
-            return next;
+            let code = "";
+            try {
+              const b = (await res.json()) as { error_code?: string; msg?: string; error_description?: string };
+              code = `${b.error_code ?? ""} ${b.msg ?? b.error_description ?? ""}`.toLowerCase();
+            } catch {
+              /* not JSON */
+            }
+            const gone = (res.status === 400 || res.status === 401 || res.status === 403) && (SESSION_GONE.test(code) || /invalid refresh token/.test(code));
+            if (!gone) return cur; // rate limit, outage or unknown answer: keep the session, try again next time
+            const latest = await opts.store.get();
+            if (latest && latest.refreshToken !== cur.refreshToken) return latest; // someone else already rotated it
+            await opts.store.set(null);
+            return null;
           } catch {
-            return s; // offline: keep it
-          } finally {
-            refreshing = null;
+            return cur; // offline: keep it
           }
-        })();
+        }).finally(() => {
+          refreshing = null;
+        });
       }
       return refreshing;
     },
-
     /** Access token for the API, or null when signed out. */
     async accessToken(): Promise<string | null> {
       return (await this.getSession())?.accessToken ?? null;
