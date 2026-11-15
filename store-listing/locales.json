@@ -1,0 +1,42 @@
+{
+  "en": {
+    "name": "OpenKeyword: Free Keyword Research Data",
+    "summary": "Anonymously share the words you search to build a free keyword research database for SEO. Off until you turn it on.",
+    "summaryOpenSource": "Open source and anonymous: share the words you search to build a free keyword research database for SEO. Off by default."
+  },
+  "ro": {
+    "name": "OpenKeyword: cuvinte cheie gratuite pentru SEO",
+    "summary": "Trimite anonim ce cauți pe Google și ajută la o bază de date gratuită de cuvinte cheie pentru SEO. Oprită până o pornești tu.",
+    "summaryOpenSource": "Open source și anonimă: trimite ce cauți și ajută la o bază de date gratuită de cuvinte cheie pentru SEO. Oprită implicit."
+  },
+  "es": {
+    "name": "OpenKeyword: palabras clave gratis para SEO",
+    "summary": "Comparte de forma anónima lo que buscas y ayuda a crear una base gratuita de palabras clave para SEO. Desactivada al inicio.",
+    "summaryOpenSource": "De código abierto y anónima: comparte lo que buscas para crear una base gratuita de palabras clave para SEO. Viene desactivada."
+  },
+  "de": {
+    "name": "OpenKeyword: Kostenlose Keyword-Recherche für SEO",
+    "summary": "Teile anonym, wonach du suchst, und hilf beim Aufbau einer kostenlosen Keyword-Datenbank für SEO. Aus, bis du sie einschaltest.",
+    "summaryOpenSource": "Open Source und anonym: Teile, wonach du suchst, für eine kostenlose Keyword-Datenbank für SEO. Standardmäßig aus."
+  },
+  "it": {
+    "name": "OpenKeyword: parole chiave gratis per la SEO",
+    "summary": "Condividi in forma anonima ciò che cerchi e aiuta a creare un database gratuito di parole chiave per la SEO. Disattivata di default.",
+    "summaryOpenSource": "Open source e anonima: condividi ciò che cerchi per creare un database gratuito di parole chiave per la SEO. Spenta di default."
+  },
+  "ja": {
+    "name": "OpenKeyword：無料のキーワード調査データ（SEO）",
+    "summary": "検索したキーワードを匿名で共有し、SEO に使える無料のキーワード調査データベースづくりに参加。オンにするまで何も送信しません。",
+    "summaryOpenSource": "オープンソース・匿名。検索したキーワードを共有して、SEO に使える無料のキーワードデータベースづくりに参加。初期設定はオフです。"
+  },
+  "pt_BR": {
+    "name": "OpenKeyword: palavras-chave grátis para SEO",
+    "summary": "Compartilhe de forma anônima o que você pesquisa e ajude a criar uma base gratuita de palavras-chave para SEO. Desligada por padrão.",
+    "summaryOpenSource": "De código aberto e anônima: compartilhe suas buscas para criar uma base gratuita de palavras-chave para SEO. Desligada por padrão."
+  },
+  "fr": {
+    "name": "OpenKeyword : mots-clés gratuits pour le SEO",
+    "summary": "Partagez anonymement vos recherches pour bâtir une base de mots-clés gratuite pour le SEO. Désactivée par défaut.",
+    "summaryOpenSource": "Open source et anonyme : partagez vos recherches pour bâtir une base de mots-clés gratuite pour le SEO. Désactivée par défaut."
+  }
+}

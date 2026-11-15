@@ -1,0 +1,13 @@
+OpenKeyword Chrome extension
+Copyright 2026 The OpenKeyword Authors
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+It includes code from the shared/ folder of the OpenKeyword project, under the same license.
+
+Trademarks: the license does not grant permission to use the OpenKeyword name, logo
+or other trade names and marks (Apache License 2.0, section 6). Forks must use a
+different name and icon.
+
+Bundled third-party material:
+- Space Grotesk font (Florian Karsten), SIL Open Font License 1.1, via @fontsource/space-grotesk
+- JetBrains Mono font (JetBrains), SIL Open Font License 1.1, via @fontsource/jetbrains-mono
