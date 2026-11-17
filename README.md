@@ -1,16 +1,32 @@
 # OpenKeyword Chrome extension
 
-The browser extension behind [OpenKeyword](https://openkeyword.org), a free keyword research
-database built from anonymous search contributions.
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/djonglgibnggbehnimebhiolcimmdeil?label=Chrome%20Web%20Store)](https://chromewebstore.google.com/detail/openkeyword-free-keyword/djonglgibnggbehnimebhiolcimmdeil)
+[![Users](https://img.shields.io/chrome-web-store/users/djonglgibnggbehnimebhiolcimmdeil)](https://chromewebstore.google.com/detail/openkeyword-free-keyword/djonglgibnggbehnimebhiolcimmdeil)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 
-When you turn sharing on, the extension reads the search words from first-page searches on Google,
-Bing, DuckDuckGo, YouTube and Amazon, cleans them on your device, holds each one for 30 minutes so
-you can remove it, and then sends them in small batches. Keyword research itself happens on the
-website; the popup links to it.
+[![OpenKeyword: share your searches, build a free keyword database](https://raw.githubusercontent.com/CincaAlex/openkeyword-extension/main/docs/banner.png)](https://openkeyword.org)
 
-Chrome Web Store: https://chromewebstore.google.com/detail/openkeyword-free-keyword/djonglgibnggbehnimebhiolcimmdeil?authuser=1&hl=en
+**Share your searches. Build a free keyword database.**
 
-Privacy policy: https://openkeyword.org/privacy
+The open-source browser extension behind [OpenKeyword](https://openkeyword.org), free keyword
+research (popularity score, intent, 12-month trend and related ideas) built from searches people
+choose to share. Every search you share makes the data better for everyone, and no one's search
+history is ever stored.
+
+**[Install from the Chrome Web Store](https://chromewebstore.google.com/detail/openkeyword-free-keyword/djonglgibnggbehnimebhiolcimmdeil)** ·
+**[Research keywords](https://openkeyword.org)** ·
+[Privacy policy](https://openkeyword.org/privacy) ·
+[Source on GitHub](https://github.com/CincaAlex/openkeyword-extension)
+
+## How it works
+
+1. Install it. Sharing is **off** until you switch it on.
+2. Search as usual on Google, Bing, DuckDuckGo, YouTube or Amazon. The extension reads only the
+   search words, cleans them on your device and holds each one for 30 minutes so you can remove it.
+3. Searches are sent in small batches. A keyword appears on OpenKeyword only after 5 different
+   people searched it.
+
+Keyword research itself happens on the website; the popup links to it.
 
 ## Privacy model
 
