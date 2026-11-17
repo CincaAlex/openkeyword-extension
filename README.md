@@ -8,7 +8,7 @@ Bing, DuckDuckGo, YouTube and Amazon, cleans them on your device, holds each one
 you can remove it, and then sends them in small batches. Keyword research itself happens on the
 website; the popup links to it.
 
-Chrome Web Store: CHROME_WEB_STORE_URL
+Chrome Web Store: [CHROME_WEB_STORE_URL](https://chromewebstore.google.com/detail/openkeyword-free-keyword/djonglgibnggbehnimebhiolcimmdeil?authuser=1&hl=en)
 
 Privacy policy: https://openkeyword.org/privacy
 
